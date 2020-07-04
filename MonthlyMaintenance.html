@@ -121,6 +121,7 @@
    
     <script>
 	var map = {}
+    map["July-2020"]="getJuly2020";
     map["June-2020"]="getJune2020";
 	map["May-2020"]="getMay2020";
 	
@@ -170,6 +171,13 @@
 			 generateTable(list)
 	}
 
+	function getJuly2020(){
+	 var list = [];
+              
+			 list.push("C-608,Jitendra Misra,Paid,Cheque");
+             list.push("C-609,Jitendra Misra,Paid,Cheque");
+			 generateTable(list)
+	}
 
 function generateTable(list){
 	$("#displayTableDetails > tbody").empty()

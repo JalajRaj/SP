@@ -64,7 +64,7 @@
         
         <div class="container">
             <form id="contact" action="" method="post">
-                <h3 style="color:darkgreen"> Ganpati 2020 </h3>
+                
 				
                 
                 <fieldset>
@@ -74,21 +74,47 @@
                 </fieldset>
             </form>
         </div>
-    
-        <table id="displayTableDetails" class="table table-striped table-bordered table-hover">
+
+        <h3 style="color:darkgreen"> Ganpati Final Balance Details</h3>
+        <table id="displayTableDetails_F" class="table table-striped table-bordered table-hover">
             <thead>
                 <th>Sr. No</th>
-                <th>Wing</th>
-                <th>Flat/Shop
-                    Number</th>
-                <th>Owner Name</th>
+                <th>Amount Balance At</th>
                 <th>Amount</th>
-                <th>Owner/ 
-                    Tenant</th>
             </thead>
             <tbody></tbody>
             </table>
 
+            
+
+            <h3 style="color:darkgreen"> Ganpati 2020 Expenditure Details</h3>
+        <table id="displayTableDetails_E" class="table table-striped table-bordered table-hover">
+            <thead>
+                <th>Sr. No</th>
+                <th>Expenditure Details</th>
+                <th>Amount</th>
+                <th>Taken Care By</th>
+            </thead>
+            <tbody></tbody>
+            </table>
+
+
+            <h3 style="color:darkgreen"> Ganpati 2020 Amount Collection</h3>
+            <table id="displayTableDetails_C" class="table table-striped table-bordered table-hover">
+                <thead>
+                    <th>Sr. No</th>
+                    <th>Wing</th>
+                    <th>Flat/Shop
+                        Number</th>
+                    <th>Owner Name</th>
+                    <th>Amount</th>
+                    <th>Owner/ 
+                        Tenant</th>
+                </thead>
+                <tbody></tbody>
+                </table>
+    
+            
         <div class="clear"></div>
 
         <footer class="footer">
@@ -149,27 +175,71 @@
             list.push("B,@605,@Shiv Nair,@100,@Owner");
             list.push("C,@608,@Jitendra Misra,@100,@Owner");
             list.push("A,@703,@Kamal Patwa,@200,@Owner");
+            list.push("C,@707,@Subbaraman Iyer,@3400,@Owner");
             list.push("C,@708,@Pradeep Sonavane,@100,@Owner");
             list.push("D,@710,@Deepak Veer,@100,@Owner");
             list.push("D,@712,@Jalaj Purohit,@100,@Owner");
       
 
-            list.push(",@,@<b>Total</b>,@<b>4445</b>,@");
+            list.push(",@,@<b>Total</b>,@<b>7845</b>,@");
 
-         generateTable(list)
+         generateTable_C(list)
+
+
+         var listE = [];
+            listE.push("Ganpati Idol,@3400,@C-707");
+            listE.push("Sweets,@560,@C-707");
+            listE.push("Puja Samagri,@86,@C-707");
+            listE.push("Puja Samagri,@886,@A-302");
+            listE.push("Ganpati Pandal Samagri,@150,@D-312");
+            listE.push("<b>Total</b>,@<b>5082</b>,@");
+
+         generateTable_E(listE)
+
+         var listF = [];
+            listF.push("A-401 (2020 Ganpati),@2763 [Collection (7845) - Expenditure (50820]");
+            listF.push("A-401 (2019 Ganpati),@7303");
+            listF.push("D-712 (2019 Ganpati),@3452");
+            
+            listF.push("<b>Total</b>,@<b>13518</b>,@");
+
+         generateTable_F(listF)
+
         }
         
 
 
     
     
-    function generateTable(list){
-        $("#displayTableDetails > tbody").empty()
+    function generateTable_C(list){
+        $("#displayTableDetails_C > tbody").empty()
         var count =1;
         $(list).each(function(){
             var val = this.split(",@");
             var tr="<tr><td>"+count+" </td><td>"+val[0]+"</td><td>"+val[1]+"</td><td>"+val[2]+"</td><td>"+val[3]+"</td><td>"+val[4]+"</td></tr>";
-            $("#displayTableDetails").append(tr);
+            $("#displayTableDetails_C").append(tr);
+            count++;
+        });
+    }
+
+    function generateTable_E(list){
+        $("#displayTableDetails_E > tbody").empty()
+        var count =1;
+        $(list).each(function(){
+            var val = this.split(",@");
+            var tr="<tr><td>"+count+" </td><td>"+val[0]+"</td><td>"+val[1]+"</td><td>"+val[2]+"</td></tr>";
+            $("#displayTableDetails_E").append(tr);
+            count++;
+        });
+    }
+
+    function generateTable_F(list){
+        $("#displayTableDetails_F > tbody").empty()
+        var count =1;
+        $(list).each(function(){
+            var val = this.split(",@");
+            var tr="<tr><td>"+count+" </td><td>"+val[0]+"</td><td>"+val[1]+"</td></tr>";
+            $("#displayTableDetails_F").append(tr);
             count++;
         });
     }
@@ -181,12 +251,32 @@
             $(document).ready(function(){
               $("#Search").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
-                $("#displayTableDetails tr").filter(function() {
+                $("#displayTableDetails_E tr").filter(function() {
                   $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
               });
             });
     </script>
+    <script>
+        $(document).ready(function(){
+          $("#Search").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#displayTableDetails_C tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+</script>
+<script>
+    $(document).ready(function(){
+      $("#Search").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#displayTableDetails_F tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+</script>
 </body>
 
 </html>

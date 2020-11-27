@@ -122,6 +122,8 @@
    
     <script>
 	var map = {}
+    map["December-2020"]="getDecember2020";
+    map["November-2020"]="getNovember2020";
     map["October-2020"]="getOctober2020";
     map["September-2020"]="getSeptember2020";
     map["August-2020"]="getAugust2020";
@@ -240,7 +242,9 @@
     function getOctober2020(){
 	 var list = [];
              list.push("B-305,Santram Khavase,Paid,Onine");
+             list.push("D-312,Shailesh Borkar,Paid,Onine");
              list.push("C-507,Purnendu Ghosh,Paid,Onine"); 
+             list.push("A-603,Binod Sahu,Paid,Onine");
 			 list.push("C-608,Jitendra Misra,Paid,Cheque");
              list.push("C-609,Jitendra Misra,Paid,Cheque");
 			 generateTable(list)
@@ -248,7 +252,8 @@
 
     function getNovember2020(){
 	 var list = [];
-              
+             list.push("D-312,Shailesh Borkar,Paid,Onine");
+             list.push("A-603,Binod Sahu,Paid,Onine");
 			 list.push("C-608,Jitendra Misra,Paid,Cheque");
              list.push("C-609,Jitendra Misra,Paid,Cheque");
 			 generateTable(list)

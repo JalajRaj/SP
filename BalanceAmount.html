@@ -47,9 +47,9 @@
                         <div class="col-md-7 col-sm-12 col-xs-12">
                             <div class="menu">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="index.html">HOME </a></li>
+                                    
                                     <li class="activeHeader"><a href="BalanceAmount.html">Balance Amount</a></li>
-                                    <li><a href="img/MaximumPendingAmount.png">Max Pending Balance Amount (In order)</a></li>
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -62,10 +62,10 @@
        <div class="container">
             <form id="contact" action="" method="post">
                 <h3 style="color:darkgreen"> Balance Amount  </h3>
-
-                <h4 style="color:rgb(236, 16, 90)"> Total Flat Balance - 12346881	</h4>
-                <h4 style="color:rgb(236, 16, 90)"> Total Maintenance Balance -	3427254	  </h4>
-                <h3 style="color:rgb(236, 16, 90)"> Total Balance -	15774135  </h3>
+                <h3 style="color:rgb(236, 16, 90)"> Total Flat Balance - 12346881 Rs	</h4>
+                <h3 style="color:rgb(236, 16, 90)"> Total Maintenance Balance -	3427254	Rs  </h4>
+                <h3 style="color:rgb(236, 16, 90)"> Total Balance -	15774135 Rs </h3>
+				<h3 style="color:darkgreen"> Owner Ready to Pay Amount -	<span id="ownerReadyid">0</span> Rs  </h3>
                
                 <fieldset>
                     <label for="Search">Search</label>
@@ -73,25 +73,25 @@
 					
                 </fieldset>
             </form>
-        </div>
+        
       
 <!-- <select id="monthSelection" onChange="return displayTableData()"></select> -->
 <!-- <table id="displayTableDetails" class="table table-striped table-bordered table-hover"
 	<table id="displayTableDetails"> -->
 	<table id="displayTableDetails" class="table table-striped table-bordered table-hover">
 	<thead>
-        <th>Sr. No</th>
-        <th>Flat Number</th>
-		<th>Owner Name</th>
-		<th>Contact Number</th>
-		<th>Flat Balance</th>
-		<th>Maintenance Balance</th>
-		<th>Total Pending</th>
+        <th><a href="javascript:void(0)" style="cursor: pointer;">Sr. No</a></th>
+        <th><a href="javascript:void(0)" style="cursor: pointer;">Flat Number</a></th>
+		<th><a href="javascript:void(0)" style="cursor: pointer;">Owner Name</a></th>
+		<th><a href="javascript:void(0)" style="cursor: pointer;">Contact Number</a></th>
+		<th><a href="javascript:void(0)" style="cursor: pointer;">Flat Balance</a></th>
+		<th><a href="javascript:void(0)" style="cursor: pointer;">Maintenance Balance</a></th>
+		<th><a href="javascript:void(0)" style="cursor: pointer;">Total Pending</a></th>
 		<th>Owner Ready to Pay Amount</th>
 	</thead>
 	<tbody></tbody>
 	</table>
-
+</div>
         <div class="clear"></div>
 
         <footer class="footer">
@@ -122,7 +122,7 @@
    
    
     <script>
-
+var context="https://5vvnjl5hii.execute-api.ap-south-1.amazonaws.com/dev/SP/";
 function getDetails(){
          var list = [];
           list.push("A-101,Pritam Naik,7710933367,0,22090,22090,0");
@@ -211,33 +211,167 @@ function getDetails(){
  list.push("D-712,Jalaj Purohit,9820684534,0,28633,28633,0");
 
 			 
-	 generateTable(list)
+	 generateTable(list);
+	 getAllOwnerReadyData();
+	 
 	}
 	
 	
 
 
 function generateTable(list){
-        $("#displayTableDetails > tbody").empty()
-        var count =1;
-        $(list).each(function(){
+        $("#displayTableDetails > tbody").empty();       
+        $(list).each(function(i){
+		var ownerReady = "<input type='text' size='3' name='ownerReady' value='0' onkeyup='return checkValidAmt1(this)' />&nbsp;&nbsp;<input type='button' onClick='return updateOwnerReadyData(this)'; value='Update' class='btn btn-primary' />"
             var val = this.split(",");
-            var tr="<tr><td>"+count+" </td><td>"+val[0]+"</td><td>"+val[1]+"</td><td>"+val[2]+"</td><td>"+val[3]+"</td><td>"+val[4]+"</td><td>"+val[5]+"</td></tr>";
+            var tr="<tr><td data-type='number'>"+(++i)+" </td><td>"+val[0]+"</td><td>"+val[1]+"</td><td data-type='number'>"+val[2]+"</td><td data-type='number'>"+val[3]+"</td>"+
+			"<td data-type='number'>"+val[4]+"</td><td data-type='number'>"+val[5]+"</td><td>"+ownerReady+"</td></tr>";
             $("#displayTableDetails").append(tr);
-            count++;
         });
     }
-</script>
+	
+	function checkValidAmt1(obj){
+		if(!checkValidAmt($(obj).val())){
+			$(obj).val('');
+		}
+	}
+function checkValidAmt(val){
+ var patt1 = /[^0-9]/g;
+  var result = val.match(patt1);
+	if(result != null){
+    alert("Please only enter numeric characters only for Amount");
+	return false;
+  }
+  return true;
+}
+	
+function getAllOwnerReadyData(){
+$.ajax({
+			  type: 'POST',
+			  url: context + "fetchSPDetails",
+			  success: function (response) { 				
+					$(response).each(function(){
+							findRowUpdateAmt($(this).attr('id'),$(this).attr('amt'))
+					})
+				},
+			  error : function (response) { 						
+					
+					alert(response);
+					}
 
-<script>
+			});
+
+
+}	
+function findRowUpdateAmt(flat,amt){
+	$("#displayTableDetails > tbody > tr").each(function(){
+			if(flat == $(this).find('td').eq(1).html()){
+				$(this).find('td').eq(7).find('input[name="ownerReady"]').val(amt);
+				$("#ownerReadyid").html(parseInt($("#ownerReadyid").html()) + parseInt(amt));
+			}
+			
+	});
+}
+
+function updateOwnerReadyData(obj){
+	var flatNo=$(obj).parent().parent().find('td').eq(1).html();
+	var amt=$(obj).parent().find('input[name="ownerReady"]').val();	
+	 if(amt == ""){
+	alert('Please enter amount for Flat No '+flatNo);
+	return false;
+	}
+	if(! checkValidAmt(amt)){
+		return false;
+	}
+	var map = {};
+	map["flatNo"]=flatNo
+	map["amt"]=amt
+	$.ajax({
+			  type: 'POST',
+			  url: context + "saveSPDetails",
+			  data:JSON.stringify(map),
+			  success: function (response) { 				
+					alert(amt+' Rs, Amount has been Updated Successfully for Flat No : ' +flatNo )
+				},
+			  error : function (response) {
+					alert("Some Error occur "+response);
+					}
+
+			});
+}
     $(document).ready(function(){
       $("#Search").on("keyup", function() {
         var value = $(this).val().toLowerCase();
-        $("#displayTableDetails tr").filter(function() {
+        $("#displayTableDetails tbody tr").filter(function() {
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
+	  $("#displayTableDetails").find('a').click(function() { 
+		sortTableDetails(this);
+		return false;
+	});
     });
+	
+var prevIndex = -1; 
+var sortState = 'N'; 
+
+function sortTableDetails(obj){
+var position = $(obj).parent().index();
+var table, rows, switching, i, x, y, shouldSwitch;
+var tableName =  table = $(obj).parent().parent().parent().parent().attr("id");
+ table = document.getElementById(tableName);
+ switching = true;
+ while (switching) {
+   switching = false;
+   rows = table.getElementsByTagName("TR");   
+   for (i = 1; i < (rows.length - 1); i++) {     
+     shouldSwitch = false;      
+     x = rows[i].getElementsByTagName("TD")[position];
+     y = rows[i + 1].getElementsByTagName("TD")[position]; 
+     var sortdataType = 'string';
+     if(rows[i].getElementsByTagName("TD")[position].getAttribute("data-type") == 'number' && rows[i + 1].getElementsByTagName("TD")[position].getAttribute("data-type") == 'number'){
+    	 sortdataType = 'number';
+     }     
+     if( prevIndex != position){
+         sortState = 'N';
+     }     
+     if( prevIndex == position && sortState == 'Y'){
+	     if(sortdataType == 'string'){
+	    	 if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {     
+		         shouldSwitch= true;
+		         break;
+		       }  	    
+	     }else{
+	    	 if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {     
+		         shouldSwitch= true;
+		         break;
+		       } 
+	    }
+     }else{      
+    	  if(sortdataType == 'string'){
+	    	 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {     
+		       shouldSwitch= true;
+		       break;
+		     }
+    	  }else{
+    		  if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {     
+   		       shouldSwitch= true;
+   		       break;
+   		     }
+    	  } 
+     }
+   }
+   
+   if (shouldSwitch) {     
+     rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+     switching = true;
+   }   
+ }
+ sortState = sortState == 'Y' ? 'N' : 'Y'; 
+ prevIndex = position;
+
+}
+	
 </script>
 
 </body>

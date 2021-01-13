@@ -247,7 +247,7 @@
 	 generateTable(list)
     }
     
-    
+
     function getYear2022(){
 	 var list = [];
 
@@ -378,7 +378,8 @@ $(document).ready(function(){
 	$.map(map, function(value,key){
 		$('#YearSelection').append('<option value="'+value+'">'+key+'</option>');
 	});
-	displayTableData();
+    displayTableData();
+    SetColor();
 });
 </script>
 
@@ -391,6 +392,17 @@ $(document).ready(function(){
 		    });
 		  });
 		});
+</script>
+
+<script>
+    function SetColor(){
+    var cells = document.getElementById("displayTableDetails").getElementsByTagName("td");
+        for (var i = 0; i < cells.length; i++) {
+            if (cells[i].innerHTML == "Jan") {
+            cells[i].style.backgroundColor = "green";
+            }
+        }
+    }
 </script>
 
 </body>

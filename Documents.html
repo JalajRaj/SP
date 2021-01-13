@@ -74,7 +74,7 @@
 					
                 </fieldset>
             </form>
-        </div>
+       
       
 <!-- <select id="FaltShopDetails" onChange="return displayTableData()"></select> -->
 <!-- <table id="displayTableDetails" class="table table-striped table-bordered table-hover"
@@ -89,7 +89,7 @@
 	</thead>
 	<tbody></tbody>
 	</table>
-
+ </div>
         <div class="clear"></div>
 
         <footer class="footer">
@@ -233,7 +233,8 @@
                 list.push("Shop-18 ,Shop-18,");
                 list.push("Shop-19 ,Shop-19,");
                 
-	 generateTable(list)
+	 generateTable(list);
+	 getDocDetails();
     }
 
   
@@ -249,28 +250,61 @@ function generateTable(list){
 	});
 }
 
-function displayTableData(){
-	eval($("#FaltShopDetails").val()+"()");
-}
 
-$(document).ready(function(){
-	$.map(map, function(value,key){
-		$('#FaltShopDetails').append('<option value="'+value+'">'+key+'</option>');
-	});
-    displayTableData();
-    SetColor();
-});
-</script>
-
-<script>
 		$(document).ready(function(){
 		  $("#Search").on("keyup", function() {
 		    var value = $(this).val().toLowerCase();
-		    $("#displayTableDetails tr").filter(function() {
+		    $("#displayTableDetails tbody tr").filter(function() {
 		      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 		    });
 		  });
 		});
+		
+function refreshDoc(){
+ $.ajax({
+	  type: 'POST',
+	  url: "https://5vvnjl5hii.execute-api.ap-south-1.amazonaws.com/dev/SP/refreshSPDoc",
+	  success: function (response) { 
+			alert(response)
+			},
+	  error : function (response) { 		
+			
+			alert(response);
+			
+			}
+	});
+}	
+function getDocDetails(){
+ $.ajax({
+	  type: 'POST',
+	  url: "https://5vvnjl5hii.execute-api.ap-south-1.amazonaws.com/dev/SP/getSPDoc",
+	  success: function (response1) { 	  			
+			$.each(response1, function(key,response) {	
+						console.log(key + " - "+response);
+						addValueToFlat(key,response)
+				});
+			},
+	  error : function (response1) { 
+				alert(response1)
+			}
+	});
+}	
+function addValueToFlat(faltNo,doc){
+	$.each($("#displayTableDetails tbody tr"), function(key,response) {	
+						console.log($(response).find('td').eq(1).html());
+						if($(response).find('td').eq(1).html().trim() == faltNo){
+							var ulcontent = "<ul style='list-style-type:none;'>";
+							$(doc).each(function(){  
+								console.log(this) 
+								ulcontent = ulcontent + "<li><a target='_blank' href='Document/"+faltNo+"/"+this+ "'>"+this+"</a></li>";
+							});
+							ulcontent = ulcontent + "</ul>";
+						
+							$(response).find('td').eq(3).html(ulcontent);
+						}
+				});
+
+}
 </script>
 
 

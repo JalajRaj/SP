@@ -18,7 +18,7 @@
     <link rel="shortcut icon" href="img/logo1.jpg" type="image/x-icon">
 </head>
 
-<body>
+<body onload="getFaltShopDetails()"">
     <div class="wrapper">
         <header class="header">
             <section class="header-top">
@@ -62,11 +62,11 @@
        <div class="container">
             <form id="contact" action="" method="post">
                 <h3 style="color:darkgreen"> All Flats and Shops Documents  </h3>
-				<fieldset>
+				<!--<fieldset>
                     <label for="Name">Select Flat/Shop</label>
 				   <select id="FaltShopDetails" onChange="return displayTableData()" class="form-control"></select>
 					
-                </fieldset>
+                </fieldset>-->
                 
                 <fieldset>
                     <label for="Search">Search</label>
@@ -120,24 +120,118 @@
    
    
     <script>
-	var map = {}
-    map["A-101"]="getA101";
-    map["D-712"]="getD712";
+	//var map = {}
+    //map["Falt Shop Details"]="getFaltShopDetails";
+    
 
 	
 
-	function getA101(){
+	function getFaltShopDetails(){
 	 var list = [];
 
-                list.push("A-101 ,Pritam Naik,,,,,,,,,,,,");
-                
-	 generateTable(list)
-    }
-
-    function getD712(){
-	 var list = [];
-
-                list.push("A-712 ,Jalaj Purohit,,,,,,,,,,,,");
+     list.push("A-101 ,Pritam Naik,");
+                list.push("A-102 ,Pritam Naik,");
+                list.push("A-103 ,Arun Kamble,");
+                list.push("B-104 ,Investor Flat,");
+                list.push("B-105 ,Sanjay Murudkar,");
+                list.push("B-106 ,Dilip Naik,");
+                list.push("C-107 ,Dilip Naik,");
+                list.push("C-108 ,Ajit Gokhale,");
+                list.push("C-109 ,Mihir Kamdar,");
+                list.push("D-110 ,Akshay Apte,");
+                list.push("D-111 ,Prajwal Jamkhandikar,");
+                list.push("D-112 ,Investor Flat,");
+                list.push("A-201 ,Dilip Naik,");
+                list.push("A-202 ,Dilip Naik,");
+                list.push("A-203 ,Sakharam Vasant Bhosle,");
+                list.push("B-204 ,Sanjay Ghadge,");
+                list.push("B-205 ,Sandeep Varhadi,");
+                list.push("B-206 ,Dilip Naik,");
+                list.push("C-207 ,Reena  Chaturvediv,");
+                list.push("C-208 ,Jagjeet Singh Aurora,");
+                list.push("C-209 ,Sagar J. Pawar,");
+                list.push("D-210 ,Vijaya Iyer,");
+                list.push("D-211 ,Sarvesh Pal,");
+                list.push("D-212 ,Neeraj Tiwari,");
+                list.push("A-301 ,Madhavi Desai,");
+                list.push("A-302 ,Narayan Chavan,");
+                list.push("A-303 ,Mohan Koli,");
+                list.push("B-304 ,Seema Ashok Sharma,");
+                list.push("B-305 ,Santram Khavase,");
+                list.push("B-306 ,Milind Bhoskar,");
+                list.push("C-307 ,Shreyas Goyal,");
+                list.push("C-308 ,Sagar Bhogte,");
+                list.push("C-309 ,Kedar Shetye,");
+                list.push("D-310 ,Nitin Iyer,");
+                list.push("D-311 ,Agney Purohit,");
+                list.push("D-312 ,Shailesh Borkar,");
+                list.push("A-401 ,Ramesh Sonawane,");
+                list.push("A-402 ,Pranay Panad,");
+                list.push("A-403 ,Sharad Kale,");
+                list.push("B-404 ,Surendra Patil,");
+                list.push("B-405 ,Chitte Vasant Barku,");
+                list.push("B-406 ,Seerla Chandrasekhar,");
+                list.push("C-407 ,Pritam Naik,");
+                list.push("C-408 ,Sanjay Borse,");
+                list.push("C-409 ,Ramesh Kadam,");
+                list.push("D-410 ,Siddharth Goel,");
+                list.push("D-411 ,Himmatrao Savale,");
+                list.push("D-412 ,Akshay Rajpurohit,");
+                list.push("A-501 ,Dilip Naik,");
+                list.push("A-502 ,Mr. Rao,");
+                list.push("A-503 ,Anil Ganwani,");
+                list.push("B-504 ,Anil Ganwani,");
+                list.push("B-505 ,Vivek Yadav,");
+                list.push("B-506 ,Leo Williams,");
+                list.push("C-507 ,Purnendu Ghosh,");
+                list.push("C-508 ,Arun Saxena,");
+                list.push("C-509 ,Bajaji Jadhav,");
+                list.push("D-510 ,Prakash Ghart,");
+                list.push("D-511 ,Sanjay Singh,");
+                list.push("D-512 ,Gautam Pagare,");
+                list.push("A-601 ,Dilip Naik,");
+                list.push("A-602 ,Srikanth Mikkilineni,");
+                list.push("A-603 ,Binod Sahu,");
+                list.push("B-604 ,Sudhir Vanarase,");
+                list.push("B-605 ,Shiv Nair,");
+                list.push("B-606 ,Investor Flat,");
+                list.push("C-607 ,Pankaj Kumar,");
+                list.push("C-608 ,Mr. Misra,");
+                list.push("C-609 ,Mr. Misra,");
+                list.push("D-610 ,Gopal Rajpal,");
+                list.push("D-611 ,Nageshwar Rao,");
+                list.push("D-612 ,Asit Baran Karmakar,");
+                list.push("A-701 ,Vasant Deshmukh,");
+                list.push("A-702 ,Rajkumar Singh,");
+                list.push("A-703 ,Kamal Patwa,");
+                list.push("B-704 ,Loren Bonita Lobo,");
+                list.push("B-705 ,Ashwani Joshi,");
+                list.push("B-706 ,Tanaji More,");
+                list.push("C-707 ,Subbaraman Iyer,");
+                list.push("C-708 ,Pradeep Sonavane,");
+                list.push("C-709 ,Akshay Sonavane,");
+                list.push("D-710 ,Deepak Veer,");
+                list.push("D-711 ,Aman Grover,");
+                list.push("D-712 ,Jalaj Purohit,");
+                list.push("Shop-1 ,Shop-1,");
+                list.push("Shop-2 ,Shop-2,");
+                list.push("Shop-3 ,Shop-3,");
+                list.push("Shop-4 ,Shop-4,");
+                list.push("Shop-5 ,Shop-5,");
+                list.push("Shop-6 ,Shop-6,");
+                list.push("Shop-7 ,Shop-7,");
+                list.push("Shop-8 ,Shop-8,");
+                list.push("Shop-9 ,Shop-9,");
+                list.push("Shop-10 ,Shop-10,");
+                list.push("Shop-11 ,Shop-11,");
+                list.push("Shop-12 ,Shop-12,");
+                list.push("Shop-13 ,Shop-13,");
+                list.push("Shop-14 ,Shop-14,");
+                list.push("Shop-15 ,Shop-15,");
+                list.push("Shop-16 ,Shop-16,");
+                list.push("Shop-17 ,Shop-17,");
+                list.push("Shop-18 ,Shop-18,");
+                list.push("Shop-19 ,Shop-19,");
                 
 	 generateTable(list)
     }
@@ -149,7 +243,7 @@ function generateTable(list){
 	var count =1;
 	$(list).each(function(){
 		var val = this.split(",");
-		var tr="<tr><td>"+count+" </td><td>"+val[0]+"</td><td>"+val[1]+"</td><td>"+val[2]+"</td><td>"+val[3]+"</td><td>"+val[4]+"</td></tr>";
+		var tr="<tr><td>"+count+" </td><td>"+val[0]+"</td><td>"+val[1]+"</td><td>"+val[2]+"</td></tr>";
 		$("#displayTableDetails").append(tr);
 		count++;
 	});
@@ -179,21 +273,6 @@ $(document).ready(function(){
 		});
 </script>
 
-<script>
-    function SetColor(){
-    var cells = document.getElementById("displayTableDetails").getElementsByTagName("td");
-    var numberPattern = new RegExp('^\\d*$');
-
-
-        for (var i = 0; i < cells.length; i++) {
-            if (cells[i].innerHTML !== "") {
-                if (cells[i].innerHTML.match(numberPattern)) {
-                cells[i].style.backgroundColor = "lightgreen";
-                }
-            }
-        }
-    }
-</script>
 
 </body>
 

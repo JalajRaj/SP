@@ -1,0 +1,3 @@
+on debug mode execute below comand from consol section
+
+refreshDoc()

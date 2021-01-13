@@ -150,7 +150,7 @@
                 list.push("C-108 ,Ajit Gokhale,,,,,,,,,,,,");
                 list.push("C-109 ,Mihir Kamdar,,,,,,,,,,,,");
                 list.push("D-110 ,Akshay Apte,,,,,,,,,,,,");
-                list.push("D-111 ,Prajwal Jamkhandikar,Jan,,,,,,,,,,,");
+                list.push("D-111 ,Prajwal Jamkhandikar,2090,,,,,,,,,,,");
                 list.push("D-112 ,,,,,,,,,,,,,");
                 list.push("A-201 ,Dilip Naik,,,,,,,,,,,,");
                 list.push("A-202 ,Dilip Naik,,,,,,,,,,,,");
@@ -194,7 +194,7 @@
                 list.push("B-504 ,Anil Ganwani,,,,,,,,,,,,");
                 list.push("B-505 ,Vivek Yadav,,,,,,,,,,,,");
                 list.push("B-506 ,Leo Williams,,,,,,,,,,,,");
-                list.push("C-507 ,Purnendu Ghosh,Jan,,,,,,,,,,,");
+                list.push("C-507 ,Purnendu Ghosh,2110,,,,,,,,,,,");
                 list.push("C-508 ,Arun Saxena,,,,,,,,,,,,");
                 list.push("C-509 ,Bajaji Jadhav,,,,,,,,,,,,");
                 list.push("D-510 ,Prakash Ghart,,,,,,,,,,,,");
@@ -397,9 +397,14 @@ $(document).ready(function(){
 <script>
     function SetColor(){
     var cells = document.getElementById("displayTableDetails").getElementsByTagName("td");
+    var numberPattern = new RegExp('^\\d*$');
+
+
         for (var i = 0; i < cells.length; i++) {
-            if (cells[i].innerHTML == "Jan") {
-            cells[i].style.backgroundColor = "green";
+            if (cells[i].innerHTML !== "") {
+                if (cells[i].innerHTML.match(numberPattern)) {
+                cells[i].style.backgroundColor = "lightgreen";
+                }
             }
         }
     }

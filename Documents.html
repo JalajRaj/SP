@@ -280,7 +280,6 @@ function getDocDetails(){
 	  url: "https://5vvnjl5hii.execute-api.ap-south-1.amazonaws.com/dev/SP/getSPDoc",
 	  success: function (response1) { 	  			
 			$.each(response1, function(key,response) {	
-						console.log(key + " - "+response);
 						addValueToFlat(key,response)
 				});
 			},
@@ -295,7 +294,6 @@ function addValueToFlat(faltNo,doc){
 						if($(response).find('td').eq(1).html().trim() == faltNo){
 							var ulcontent = "<ul style='list-style-type:none;'>";
 							$(doc).each(function(){  
-								console.log(this) 
 								ulcontent = ulcontent + "<li><a target='_blank' href='Document/"+faltNo+"/"+this+ "'>"+this+"</a></li>";
 							});
 							ulcontent = ulcontent + "</ul>";

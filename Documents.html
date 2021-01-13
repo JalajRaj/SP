@@ -290,14 +290,12 @@ function getDocDetails(){
 }	
 function addValueToFlat(faltNo,doc){
 	$.each($("#displayTableDetails tbody tr"), function(key,response) {	
-						console.log($(response).find('td').eq(1).html());
 						if($(response).find('td').eq(1).html().trim() == faltNo){
 							var ulcontent = "<ul style='list-style-type:none;'>";
 							$(doc).each(function(){  
 								ulcontent = ulcontent + "<li><a target='_blank' href='Document/"+faltNo+"/"+this+ "'>"+this+"</a></li>";
 							});
-							ulcontent = ulcontent + "</ul>";
-						
+							ulcontent = ulcontent + "</ul>";						
 							$(response).find('td').eq(3).html(ulcontent);
 						}
 				});

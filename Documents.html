@@ -291,11 +291,11 @@ function getDocDetails(){
 function addValueToFlat(faltNo,doc){
 	$.each($("#displayTableDetails tbody tr"), function(key,response) {	
 						if($(response).find('td').eq(1).html().trim() == faltNo){
-							var ulcontent = "<ul style='list-style-type:none;'>";
+							var ulcontent = "";
 							$(doc).each(function(){  
-								ulcontent = ulcontent + "<li><a target='_blank' href='Document/"+faltNo+"/"+this+ "'>"+this+"</a></li>";
+								ulcontent = ulcontent + "<a target='_blank' href='Document/"+faltNo+"/"+this+ "'>"+this+"</a><br/>";
 							});
-							ulcontent = ulcontent + "</ul>";						
+												
 							$(response).find('td').eq(3).html(ulcontent);
 						}
 				});

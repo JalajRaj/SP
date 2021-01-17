@@ -16,6 +16,20 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="shortcut icon" href="img/logo1.jpg" type="image/x-icon">
+
+    <style>
+        Doc::-internal-media-controls-download-button {
+         display:none;
+        }
+      
+        Doc::-webkit-media-controls-enclosure {
+             overflow:hidden;
+        }
+      
+        Doc::-webkit-media-controls-panel {
+             width: calc(100% + 30px); 
+        }
+      </style>
 </head>
 
 <body onload="getFaltShopDetails()"">
@@ -58,8 +72,16 @@
             </section>
         </header>
         
+        <p>Enter Password</p>
+						
+        <div class="form-group">
+              <!-- <label for="">View Order details</label> -->
+            <input id="password" type="text" class="form-control text-left px-3"  placeholder="" maxlength=20>
+        </div>
+        <input type="submit" value="Show Documents"  onclick="myFunction()" class="btn btn-primary py-3 px-5">
+        </div>
 	
-       <div class="container">
+       <div class="container" id="myDIV">
            
                 <h3 style="color:darkgreen"> All Flats and Shops Documents  </h3>
 				<!--<fieldset>
@@ -123,7 +145,6 @@
 	//var map = {}
     //map["Falt Shop Details"]="getFaltShopDetails";
     
-
 	
 
 	function getFaltShopDetails(){
@@ -301,8 +322,55 @@ function addValueToFlat(faltNo,doc){
 				});
 
 }
+
+function myFunction() {
+    $(document).ready(() => {
+
+        $('Doc').attr('controlsList', 'nodownload');
+        
+        });
+        
+        var x = document.getElementById("myDIV");
+      
+        x.style.display = "none";
+       
+        
+  
+        if(($("#password").val() == 'Jalaj' ) ) {
+            
+                var x = document.getElementById("myDIV");
+                if (x.style.display === "none") {
+                x.style.display = "block";
+                } else {
+                x.style.display = "none";
+                }
+        
+        }  else {
+                    
+            alert('Please enter valid password.');
+            var x = document.getElementById("myDIV");
+            x.style.display = "none";
+            
+            $("#password").focus()
+            return false;
+        }
+         
+  }
+
 </script>
 
+<script>
+    
+    var x = document.getElementById("myDIV");
+    x.style.display = "none";
+
+    $(document).bind("contextmenu",function(ev){
+    if(ev.target.nodeName=='Doc')
+    {
+        return false;
+    }
+});
+  </script>
 
 </body>
 

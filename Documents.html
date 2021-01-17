@@ -81,8 +81,13 @@
         <input type="submit" value="Show Documents"  onclick="myFunction()" class="btn btn-primary py-3 px-5">
         </div>
 	
+<<<<<<< HEAD
        <div class="container" id="myDIV">
            
+=======
+       <div class="container">
+            <form id="contact" action="" method="post">
+>>>>>>> 2bd3153515fe7ca2d5cfb6b33f6b5b67968125cd
                 <h3 style="color:darkgreen"> All Flats and Shops Documents  </h3>
 				<!--<fieldset>
                     <label for="Name">Select Flat/Shop</label>
@@ -95,7 +100,7 @@
 				   <input id="Search" placeholder="Type to filter records" maxlength=10 class="form-control" type="text" cols="50"  style="margin-bottom: 10px" required autofocus>
 					
                 </fieldset>
-           
+            </form>
        
       
 <!-- <select id="FaltShopDetails" onChange="return displayTableData()"></select> -->
@@ -312,11 +317,11 @@ function getDocDetails(){
 function addValueToFlat(faltNo,doc){
 	$.each($("#displayTableDetails tbody tr"), function(key,response) {	
 						if($(response).find('td').eq(1).html().trim() == faltNo){
-							var ulcontent = "";
+							var ulcontent = "<ul style='list-style-type:none;padding-inline-start:0px;'>";
 							$(doc).each(function(){  
-								ulcontent = ulcontent + "<a target='_blank' href='Document/"+faltNo+"/"+this+ "'>"+this+"</a><br/>";
+								ulcontent = ulcontent + "<li style='margin-bottom: 5px;'><a target='_blank' href='Document/"+faltNo+"/"+this+ "'>"+this+"</a></li>";
 							});
-												
+							ulcontent = ulcontent + "</ul>";						
 							$(response).find('td').eq(3).html(ulcontent);
 						}
 				});

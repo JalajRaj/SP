@@ -200,11 +200,12 @@
 							alert(response1);
 						}else{			  
 							$("#optModal").modal('hide');
-							var str = '<h1>Below are your Document</h1>';
+							var str = '<h1>Below are your Document</h1><ol>';
 								$.each(response1.split(","), function() {	
 										console.log(this)
-										str = str + '<a target="_blank" href="Document/'+$("#flatDetails :selected").attr('flatno')+'/'+this+ '">'+this+'</a><br>';
-								});	
+										str = str + '<li><a target="_blank" href="Document/'+$("#flatDetails :selected").attr('flatno')+'/'+this+ '">'+this+'</a></li>';
+								});
+								str = str + "</ol>";								
 							$("#docPlace").append(str);
 						}
 						$(obj).attr('disabled',false);

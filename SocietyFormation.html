@@ -177,13 +177,13 @@
                 list.push("B-506 ,Leo Williams,Pending,Pending");
                 list.push("C-507 ,Purnendu Ghosh,Pending,Pending");
                 list.push("C-508 ,Arun Saxena,Pending,Pending");
-                list.push("C-509 ,Bajaji Jadhav,Pending,Pending");
+                list.push("C-509 ,Bajaji Jadhav,Done,Done");
                 list.push("D-510 ,Prakash Ghart,Done,Pending");
                 list.push("D-511 ,Sanjay Singh,Pending,Pending");
-                list.push("D-512 ,Gautam Pagare,Pending,Pending");
+                list.push("D-512 ,Gautam Pagare,Done,Pending");
                 list.push("A-601 ,Dilip Naik,Pending,Pending");
                 list.push("A-602 ,Srikanth Mikkilineni,Pending,Pending");
-                list.push("A-603 ,Binod Sahu,Pending,Pending");
+                list.push("A-603 ,Binod Sahu,Done,Done");
                 list.push("B-604 ,Sudhir Vanarase,Pending,Pending");
                 list.push("B-605 ,Shiv Nair,Pending,Pending");
                 list.push("B-606 ,Investor Flat,Pending,Pending");
@@ -225,7 +225,8 @@
                 list.push("Shop-18 ,Shop-18,Pending,Pending");
                 list.push("Shop-19 ,Shop-19,Pending,Pending");
 
-	 generateTable(list)
+     generateTable(list)
+     SetColor();
     }
     
 	 
@@ -242,17 +243,7 @@ function generateTable(list){
 	});
 }
 
-function displayTableData(){
-	eval($("#SocietyFormation").val()+"()");
-}
 
-$(document).ready(function(){
-	$.map(map, function(value,key){
-		$('#SocietyFormation').append('<option value="'+value+'">'+key+'</option>');
-	});
-    displayTableData();
-    SetColor();
-});
 </script>
 
 <script>
@@ -271,11 +262,14 @@ $(document).ready(function(){
     var cells = document.getElementById("displayTableDetails").getElementsByTagName("td");
    
         for (var i = 0; i < cells.length; i++) {
-            if (cells[i].innerHTML !== "Pending") {
-               
+
+            if (cells[i].innerHTML == "Done") {
                 cells[i].style.backgroundColor = "lightgreen";
-               
-            }
+                }
+            if (cells[i].innerHTML == "Pending") {
+                cells[i].style.backgroundColor = "white";
+                }
+
         }
     }
 </script>

@@ -141,13 +141,13 @@
                 list.push("B-206 ,Dilip Naik,Pending,Pending");
                 list.push("C-207 ,Reena  Chaturvediv,Pending,Pending");
                 list.push("C-208 ,Jagjeet Singh Aurora,Pending,Pending");
-                list.push("C-209 ,Sagar J. Pawar,Pending,Pending");
+                list.push("C-209 ,Sagar J. Pawar,Pending,Done");
                 list.push("D-210 ,Vijaya Iyer,Pending,Pending");
                 list.push("D-211 ,Sarvesh Pal,Pending,Pending");
                 list.push("D-212 ,Neeraj Tiwari,Pending,Pending");
                 list.push("A-301 ,Madhavi Desai,Pending,Pending");
                 list.push("A-302 ,Narayan Chavan,Pending,Pending");
-                list.push("A-303 ,Mohan Koli,Pending,Pending");
+                list.push("A-303 ,Mohan Koli,Done,Done");
                 list.push("B-304 ,Seema Ashok Sharma,Pending,Pending");
                 list.push("B-305 ,Santram Khavase,Done,Done");
                 list.push("B-306 ,Milind Bhoskar,Pending,Pending");
@@ -260,7 +260,7 @@ function generateTable(list){
 <script>
     function SetColor(){
     var cells = document.getElementById("displayTableDetails").getElementsByTagName("td");
-   
+        
         for (var i = 0; i < cells.length; i++) {
 
             if (cells[i].innerHTML == "Done") {

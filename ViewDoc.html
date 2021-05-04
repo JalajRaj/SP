@@ -143,7 +143,7 @@
 		$("#flatDetails").append($("<option></option>").attr("value", "-1").text("--Select--")); 
 		 $.ajax({
 			  type: 'POST',
-			  url: "https://5vvnjl5hii.execute-api.ap-south-1.amazonaws.com/dev/SP/fetchSPDetails",
+			  url: "https://a8ok76592i.execute-api.ap-south-1.amazonaws.com/dev/SP/fetchSPDetails",
 			  success: function (response1) { 	  			
 					$.each(response1, function(key,response) {	
 								$("#flatDetails").append($("<option></option>").attr("flatno", $(response).attr("id")).attr("value", $(response).attr("mobileNo")).text($(response).attr("id") + " - " +$(response).attr("ownerName"))); 

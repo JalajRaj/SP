@@ -166,7 +166,7 @@
 		$.ajax({
 			  type: 'POST',
 			  data:jsonStr,
-			  url: "https://5vvnjl5hii.execute-api.ap-south-1.amazonaws.com/dev/SP/generateOTP",
+			  url: "https://a8ok76592i.execute-api.ap-south-1.amazonaws.com/dev/SP/generateOTP",
 			  success: function (response1) { 	  			
 						$("#optModal").modal('show');
 						$("#dymobileNo").html($("#flatDetails").val());
@@ -194,7 +194,7 @@
 		$.ajax({
 			  type: 'POST',
 			  data:jsonStr,
-			  url: "https://5vvnjl5hii.execute-api.ap-south-1.amazonaws.com/dev/SP/verifyOTP",
+			  url: "https://a8ok76592i.execute-api.ap-south-1.amazonaws.com/dev/SP/verifyOTP",
 			  success: function (response1) { 
 						if(response1.startsWith("Invalid")){
 							alert(response1);

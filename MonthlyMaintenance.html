@@ -67,7 +67,7 @@
                 <h4 style="color:darkgreen">  Society Account Details </h4>
                 <h4 style="color:darkgreen">  Account: 40430302254 , IFSC Code: SBIN0018108 </h4>
                 <br>
-                <h4 style="color:darkgreen">  Final Balance = 106385</h4>
+                <h4 style="color:darkgreen">  Final Balance = <span id="TotalCollection"></span> </h4>
 				<fieldset>
                     <label for="Name">Select Year</label>
 				   <select id="YearSelection" onChange="return displayTableData()" class="form-control"></select>
@@ -266,7 +266,7 @@ $(document).ready(function(){
 		$('#YearSelection').append('<option value="'+value+'">'+key+'</option>');
 	});
     displayTableData();
-    SetColor();
+    SetBalanceColor();
 });
 </script>
 
@@ -282,18 +282,20 @@ $(document).ready(function(){
 </script>
 
 <script>
-    function SetColor(){
+    function SetBalanceColor(){
     var cells = document.getElementById("displayTableDetails").getElementsByTagName("td");
     var numberPattern = new RegExp('^\\d*$');
-
+    var sumVal = 0;
 
         for (var i = 0; i < cells.length; i++) {
             if (cells[i].innerHTML !== "") {
                 if (cells[i].innerHTML.match(numberPattern)) {
                 cells[i].style.backgroundColor = "lightgreen";
+                sumVal = sumVal + parseInt(cells[i].innerHTML)
                 }
             }
         }
+        document.getElementById("TotalCollection").innerHTML = sumVal;
     }
 </script>
 

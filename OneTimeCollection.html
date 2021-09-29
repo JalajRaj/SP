@@ -68,7 +68,7 @@
                 <h4 style="color:darkgreen">  Account: 40430302254 , IFSC Code: SBIN0018108 </h4>
                 <br>
                 <h4 style="color:darkgreen">  Final Balance = 232001 </h4>
-
+                
                 <fieldset>
                     <label for="Search">Search</label>
 				   <input id="Search" placeholder="Type to filter records" maxlength=10 class="form-control" type="text" cols="50"  style="margin-bottom: 10px" required autofocus>
@@ -230,6 +230,8 @@
          
                
          generateTable(list)
+         SetColor();
+         
         }
         
 
@@ -258,7 +260,39 @@
                 });
               });
             });
+
+            
     </script>
+
+<script>
+    function SetColor(){
+    var cells = document.getElementById("displayTableDetails").getElementsByTagName("td");
+    var numberPattern = new RegExp('^\\d*$');
+
+        for (var i = 0; i < cells.length; i++) {
+            if (cells[i].innerHTML !== "") {
+                if (cells[i].innerHTML.match(numberPattern)) {
+                cells[i].style.backgroundColor = "lightgreen";
+                }
+            }
+        }
+    }
+</script>
+
+<script>
+ function SetTotal(){            
+    var table = document.getElementById("displayTableDetails"), sumVal = 0;
+    
+    for(var i = 1; i < table.rows.length; i++)
+    {
+        sumVal = sumVal + parseInt(table.rows[i].cells[2].innerHTML);
+    }
+    
+    document.getElementById("val").innerHTML = "Sum Value = " + sumVal;
+    console.log(sumVal);
+}   
+</script>
+
 </body>
 
 </html>
